@@ -1,0 +1,31 @@
+const textBox = document.getElementById('studentId'); // Replace 'yourTextBoxId' with the actual ID of your text box
+const button = document.getElementById('btnValidate'); // Replace 'yourButtonId' with the actual ID of your button
+
+function displayNumbersWithButton(startingNumber) {
+  let i = startingNumber;
+
+  function displayNextNumber() {
+    let numStr = i.toString().padStart(4, '0');
+    
+    textBox.value = numStr + '\n';
+
+    button.click();
+
+    i--;
+    if (i >= startingNumber - 3) {
+      setTimeout(displayNextNumber, 500); // 500 milliseconds (0.5 seconds) delay
+    } else {
+      startingNumber -= 4;
+      if (startingNumber >= 0) {
+        setTimeout(() => {
+          displayNumbersWithButton(startingNumber);
+        }, 1000);
+      }
+    }
+  }
+
+  displayNextNumber();
+}
+
+// Start the sequence with 9999
+displayNumbersWithButton(9999);
