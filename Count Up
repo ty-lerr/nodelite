@@ -1,0 +1,36 @@
+const textBox = document.getElementById('studentId'); // Replace 'yourTextBoxId' with the actual ID of your text box
+const button = document.getElementById('btnValidate'); // Replace 'yourButtonId' with the actual ID of your button
+
+function displayNumbersWithButton(startingNumber) {
+  let i = startingNumber;
+
+  function displayNextNumber() {
+    let numStr = i.toString().padStart(4, '0');
+    
+    // Clear the text box before displaying the new number
+    textBox.value = numStr + '\n';
+
+    // Trigger the button click
+    button.click();
+
+    // Continue to the next number after a 1-second delay
+    i++;
+    if (i <= startingNumber + 3) {
+      setTimeout(displayNextNumber, 500); // 1000 milliseconds (1 second) delay
+    } else {
+      // After displaying all numbers in the set, you can continue with the next set
+      startingNumber += 4;
+      if (startingNumber <= 9999) {
+        setTimeout(() => {
+          displayNumbersWithButton(startingNumber);
+        }, 1000);
+      }
+    }
+  }
+
+  // Start with the first number in the set
+  displayNextNumber();
+}
+
+// Start the sequence with 0000
+displayNumbersWithButton(0);
