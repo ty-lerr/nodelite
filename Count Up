@@ -1,5 +1,5 @@
-const textBox = document.getElementById('studentId'); // Replace 'yourTextBoxId' with the actual ID of your text box
-const button = document.getElementById('btnValidate'); // Replace 'yourButtonId' with the actual ID of your button
+const textBox = document.getElementById('studentId'); // Replace 'studentId' with the ID of your text box, this is set for Cady.
+const button = document.getElementById('btnValidate'); // Replace 'btnValidate' with the ID of your button, this is set for Cady.
 
 function displayNumbersWithButton(startingNumber) {
   let i = startingNumber;
@@ -7,18 +7,14 @@ function displayNumbersWithButton(startingNumber) {
   function displayNextNumber() {
     let numStr = i.toString().padStart(4, '0');
     
-    // Clear the text box before displaying the new number
     textBox.value = numStr + '\n';
 
-    // Trigger the button click
     button.click();
 
-    // Continue to the next number after a 1-second delay
     i++;
     if (i <= startingNumber + 3) {
-      setTimeout(displayNextNumber, 500); // 1000 milliseconds (1 second) delay
+      setTimeout(displayNextNumber, 500); // 500 milliseconds delay between each try, anything lower may now work.
     } else {
-      // After displaying all numbers in the set, you can continue with the next set
       startingNumber += 4;
       if (startingNumber <= 9999) {
         setTimeout(() => {
@@ -28,9 +24,8 @@ function displayNumbersWithButton(startingNumber) {
     }
   }
 
-  // Start with the first number in the set
   displayNextNumber();
 }
 
-// Start the sequence with 0000
+// Start the sequence with 0000, change to what number you want to start at. 
 displayNumbersWithButton(0);
